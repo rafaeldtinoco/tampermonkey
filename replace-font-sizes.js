@@ -28,6 +28,15 @@
 
   var domainFontSettings = [
     {
+      domain: 'twitter.com',
+      minFontSize: 18,
+      maxFontSize: 18,
+      minFixedWidthFontSize: 18,
+      maxFixedWidthFontSize: 18,
+      lineHeight: 1.2,
+      fixedWidthLineHeight: 1.2,
+    },
+    {
       domain: 'github.com',
       minFontSize: 17,
       maxFontSize: 24,
