@@ -3,13 +3,13 @@
 // @namespace    http://tampermonkey.net/
 // @version      202312160200
 // @description  Replace all fonts sizes by preferred ones.
-// @author       ChatGPT
+// @author       Rafael David Tinoco
 // @match        http*://*/*
 // @run-at       document-idle
 // @grant        none
 // ==/UserScript==
 
-; (function () {
+;(function () {
   'use strict'
 
   var fixedWidthFonts = [
@@ -34,7 +34,7 @@
       minFixedWidthFontSize: 18,
       maxFixedWidthFontSize: 18,
       lineHeight: 1.2,
-      fixedWidthLineHeight: 1.2,
+      fixedWidthLineHeight: 1.2
     },
     {
       domain: 'github.com',
@@ -65,7 +65,7 @@
     }
   ]
 
-  function adjustFontSize(node) {
+  function adjustFontSize (node) {
     let currentDomain = window.location.hostname
     let fontFamily = window.getComputedStyle(node).fontFamily.toLowerCase()
     let fontSize = parseFloat(window.getComputedStyle(node).fontSize)
@@ -120,7 +120,7 @@
     }
   }
 
-  function observeDOMChanges() {
+  function observeDOMChanges () {
     const observer = new MutationObserver(mutations => {
       mutations.forEach(mutation => {
         mutation.addedNodes.forEach(node => {
