@@ -1,11 +1,11 @@
 // ==UserScript==
 // @name         replace-fonts
 // @namespace    http://tampermonkey.net/
-// @version      202312160200
+// @version      202312190930
 // @description  Replace all fonts by preferred ones.
 // @author       Rafael David Tinoco
 // @match        http*://*/*
-// @run-at       document-idle
+// @run-at       document-start
 // @grant        none
 // ==/UserScript==
 
