@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         google-chrome-dark-mode-exceptions
 // @namespace    http://tampermonkey.net/
-// @version      202312190930
+// @version      202312201700
 // @description  Google Chrome Dark Mode Exceptions
 // @author       Rafael David Tinoco
 // @match        *://*/*
@@ -16,7 +16,10 @@
 
   let defaultMode = 'dark' // or "light"
 
-  const excludedDomains = ['github.com']
+  const excludedDomains = [
+    'mail.google.com',
+    'github.com'
+  ]
 
   function isExcluded () {
     const currentDomain = window.location.hostname

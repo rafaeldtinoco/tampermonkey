@@ -32,7 +32,8 @@
     'Lucida Grande',
     'Lucida Sans',
     'Roboto'
-  ]
+  ].map(font => font.toLowerCase())
+
   var fontsToCousine = [
     'Monospace',
     'Noto Mono',
@@ -44,7 +45,8 @@
     'Fira Mono',
     'Liberation Mono',
     'Roboto Mono'
-  ]
+  ].map(font => font.toLowerCase())
+
   var fontsToLiberationSans = [
     'Arial',
     'Times New Roman',
@@ -55,22 +57,23 @@
     'San Francisco',
     'Fira Sans',
     'Noto Sans'
-  ]
+  ].map(font => font.toLowerCase())
 
   function adjustElementStyles (node) {
     let fontFamily = window
       .getComputedStyle(node)
       .fontFamily.replace(/["']/g, '')
-    let site = window.location.hostname
+      .toLowerCase()
 
     fontFamily.split(',').some(font => {
-      if (fontsToOpenSans.includes(font.trim())) {
+      font = font.trim()
+      if (fontsToOpenSans.includes(font)) {
         node.style.fontFamily = '"Open Sans", sans-serif'
         return true
-      } else if (fontsToCousine.includes(font.trim())) {
+      } else if (fontsToCousine.includes(font)) {
         node.style.fontFamily = 'Cousine, monospace'
         return true
-      } else if (fontsToLiberationSans.includes(font.trim())) {
+      } else if (fontsToLiberationSans.includes(font)) {
         node.style.fontFamily = '"Liberation Sans", sans-serif'
         return true
       }
