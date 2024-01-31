@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         google-chrome-dark-mode-exceptions
 // @namespace    http://tampermonkey.net/
-// @version      202312201700
+// @version      20240131
 // @description  Google Chrome Dark Mode Exceptions
 // @author       Rafael David Tinoco
 // @match        *://*/*
@@ -12,21 +12,24 @@
 // To be used after chrome://flags => #enable-force-dark is enabled.
 
 ;(function () {
-  'use strict'
+    'use strict'
 
-  let defaultMode = 'dark' // or "light"
+    let defaultMode = 'dark' // or "light"
 
-  const excludedDomains = [
-    'mail.google.com',
-    'github.com'
-  ]
+    // Do not apply chrome's default dark mode to site
+    const excludedDomains = [
+        'github.com',
+        'docs.google.com',
+        'drive.google.com',
+        'docusign',
+    ]
 
-  function isExcluded () {
-    const currentDomain = window.location.hostname
-    return excludedDomains.find(domain => currentDomain.includes(domain))
-  }
+    function isExcluded () {
+        const currentDomain = window.location.hostname
+        return excludedDomains.find(domain => currentDomain.includes(domain))
+    }
 
-  const lightCSS = `
+    const lightCSS = `
         :root {
             color-scheme: light only !important;
         }
@@ -39,12 +42,12 @@
     `
 
   if (defaultMode === 'dark') {
-    if (isExcluded()) {
-      GM_addStyle(lightCSS)
-    }
+      if (isExcluded()) {
+          GM_addStyle(lightCSS)
+      }
   } else if (defaultMode === 'light') {
-    if (isExcluded()) {
-      GM_addStyle(darkCSS)
-    }
+      if (isExcluded()) {
+          GM_addStyle(darkCSS)
+      }
   }
-})()
+}
