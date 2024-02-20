@@ -79,9 +79,9 @@
         }
 
         let fontFamily = window
-        .getComputedStyle(node)
-        .fontFamily.replace(/["']/g, '')
-        .toLowerCase();
+            .getComputedStyle(node)
+            .fontFamily.replace(/["']/g, '')
+            .toLowerCase();
 
         fontFamily.split(',').some(font => {
             font = font.trim();
@@ -121,4 +121,4 @@
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('*').forEach(adjustElementStyles)
     })
-}
+})()

@@ -11,7 +11,7 @@
 
 // To be used after chrome://flags => #enable-force-dark is enabled.
 
-;(function () {
+; (function () {
     'use strict'
 
     let defaultMode = 'dark' // or "light"
@@ -24,7 +24,7 @@
         'docusign',
     ]
 
-    function isExcluded () {
+    function isExcluded() {
         const currentDomain = window.location.hostname
         return excludedDomains.find(domain => currentDomain.includes(domain))
     }
@@ -35,19 +35,19 @@
         }
     `
 
-  const darkCSS = `
+    const darkCSS = `
         :root {
             color-scheme: darkonly !important;
         }
     `
 
-  if (defaultMode === 'dark') {
-      if (isExcluded()) {
-          GM_addStyle(lightCSS)
-      }
-  } else if (defaultMode === 'light') {
-      if (isExcluded()) {
-          GM_addStyle(darkCSS)
-      }
-  }
-}
+    if (defaultMode === 'dark') {
+        if (isExcluded()) {
+            GM_addStyle(lightCSS)
+        }
+    } else if (defaultMode === 'light') {
+        if (isExcluded()) {
+            GM_addStyle(darkCSS)
+        }
+    }
+})()

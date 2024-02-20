@@ -9,7 +9,7 @@
 // @grant        none
 // ==/UserScript==
 
-;(function () {
+; (function () {
     'use strict'
 
     // Domains added here won't have default font sizes applied.
@@ -159,7 +159,7 @@
         }
     ]
 
-    function adjustFontSize (node) {
+    function adjustFontSize(node) {
         if (node.nodeName === 'BODY' || node.nodeName === 'HTML') {
             return
         }
@@ -177,15 +177,15 @@
 
         // Apply default font sizes if there isn't specific font size settings for this domain.
         let applicableSettings = domainFontSettings.find(setting =>
-                                                         currentDomain.includes(setting.domain)
-                                                        )
+            currentDomain.includes(setting.domain)
+        )
         if (!applicableSettings) {
             applicableSettings = defaultFontSettings
         }
 
         let shouldBeChanged = fontShouldBeChanged.some(font =>
-                                                       fontFamily.includes(font)
-                                                      )
+            fontFamily.includes(font)
+        )
         if (!shouldBeChanged) {
             console.log(`Not changing sizes for: ${fontFamily}`)
             return
@@ -205,10 +205,10 @@
 
         if (isFixedWidth) {
             if (minFixedWidthFontSize && fontSize < minFixedWidthFontSize) {
-                    newFontSize = minFixedWidthFontSize
+                newFontSize = minFixedWidthFontSize
             }
             if (maxFixedWidthFontSize && fontSize > maxFixedWidthFontSize) {
-                    newFontSize = maxFixedWidthFontSize
+                newFontSize = maxFixedWidthFontSize
             }
             if (fixedWidthLineHeight) {
                 newLineHeight = fixedWidthLineHeight
@@ -227,14 +227,14 @@
 
         if (newFontSize) {
             node.style.fontSize = `${newFontSize}px`
+        }
+
+        if (newLineHeight) {
+            node.style.lineHeight = `${newLineHeight}em`
+        }
     }
 
-      if (newLineHeight) {
-          node.style.lineHeight = `${newLineHeight}em`
-    }
-  }
-
-    function observeDOMChanges () {
+    function observeDOMChanges() {
         const observer = new MutationObserver(mutations => {
             mutations.forEach(mutation => {
                 mutation.addedNodes.forEach(node => {
@@ -263,4 +263,4 @@
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('*').forEach(adjustFontSize)
     })
-}
+})()
